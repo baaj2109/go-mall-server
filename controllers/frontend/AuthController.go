@@ -71,7 +71,7 @@ func (c *AuthController) SendCode() {
 		if sessionPhotoCode != phoneCode {
 			c.Data["json"] = map[string]interface{}{
 				"success": false,
-				"msg":     "輸入的圖形驗證碼不正確 非法請求",
+				"msg":     "輸入的圖形驗證碼不正確 無效請求",
 			}
 			c.ServeJSON()
 			return

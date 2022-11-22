@@ -23,7 +23,7 @@ func (Cart) TableName() string {
 }
 
 // / 判斷購物車裡面有沒有當前數據
-func isCartHasData(cartList []Cart, currentData Cart) bool {
+func IsCartHasData(cartList []Cart, currentData Cart) bool {
 	for i := 0; i < len(cartList); i++ {
 		if cartList[i].Id == currentData.Id &&
 			cartList[i].ProductColor == currentData.ProductColor &&
