@@ -53,9 +53,9 @@
         {{range $key,$value := .productCateList}}
             <li>
             {{if eq $value.Link ""}}
-                <a href="category_{{$value.Id}}.html" target="_blank">{{$value.Title}}</a>
+                <a href="category_{{$value.Id}}.html" target="_self">{{$value.Title}}</a>
             {{else}}
-                <a href="{{$value.Link}}" target="_blank">{{$value.Title}}</a>
+                <a href="{{$value.Link}}" target="_self">{{$value.Title}}</a>
             {{end}}
                 <div class="pop">
                     <ol class="cate_list clear">
@@ -63,13 +63,13 @@
                         <li>
                             <div class="choosebuy_left">
                             {{if eq $v.Link ""}}
-                                <a href="category_{{$v.Id}}.html" target="_blank" class="clearfix">
+                                <a href="category_{{$v.Id}}.html" target="_self" class="clearfix">
                                     <div class="img fl"><img src="{{$v.CateImg | formatImage}}" alt="{{$v.Title}}">
                                     </div>
                                     <span class="fl">{{$v.Title}}</span>
                                 </a>
                             {{else}}
-                                <a href="{{$v.Link}}" target="_blank" class="clearfix">
+                                <a href="{{$v.Link}}" target="_self" class="clearfix">
                                     <div class="img fl"><img src="{{$v.CateImg | formatImage}}" alt="{{$v.Title}}">
                                     </div>
                                     <span class="fl">{{$v.Title}}</span>
@@ -89,7 +89,7 @@
         <div class="swiper-wrapper">
         {{range $key,$value := .bannerList}}
             <div class="swiper-slide">
-                <a href="{{$value.Link}}" target="_blank">
+                <a href="{{$value.Link}}" target="_self">
                     <img src="{{$value.BannerImg | formatImage}}" alt="{{$value.Title}}"/>
                 </a>
             </div>
@@ -132,25 +132,25 @@
         <div class="star fl">
             <div class="sub_star"><a href=""><img src="./static/frontend/image/mi1.png" alt=""></a></div>
             <div class="brand"><a href="">Redmi 9A</a></div>
-            <div class="discount">11月9日-10日，下單回饋200元</div>
+            <div class="discount">11月9日-10日,下單回饋200元</div>
             <div class="product">599元</div>
         </div>
         <div class="star fl">
             <div class="sub_star"><a href=""><img src="./static/frontend/image/m2.png" alt=""></a></div>
             <div class="brand"><a href="">Redmi K30S 至尊纪念版B</a></div>
-            <div class="discount">12月12日，下單回饋100元</div>
+            <div class="discount">12月12日,下單回饋100元</div>
             <div class="product">2599元</div>
         </div>
         <div class="star fl">
             <div class="sub_star"><a href=""><img src="./static/frontend/image/dianshi.png" alt=""></a></div>
             <div class="brand"><a href="">小米電視3s 55英寸</a></div>
-            <div class="discount">11月9日，下單回饋200元</div>
+            <div class="discount">11月9日,下單回饋200元</div>
             <div class="product">3999元</div>
         </div>
         <div class="star fl">
             <div class="sub_star"><a href=""><img src="./static/frontend/image/product5.png" alt=""></a></div>
             <div class="brand"><a href="">小米筆記本</a></div>
-            <div class="discount">更輕更薄，像雜誌一样隨身攜帶</div>
+            <div class="discount">更輕更薄,像雜誌一样隨身攜帶</div>
             <div class="product">3599元起</div>
         </div>
         <div class="clear"></div>

@@ -2,18 +2,18 @@
 {{template "../public/banner.html" .}}
 <script type="text/javascript" src="/static/backend/js/jqPaginator.js"></script>
 <link rel="stylesheet" href="/static/backend/bootstrap/css/bootstrap.css">
-<!-- start 產品 -->
+<!-- start 單品-->
 <div class="singleproduct center">
     <div class="main center mb20">
     {{range $key,$value := .productList}}
         <div class="star fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;"
              onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
             <div class="sub_star">
-                <a href="item_{{$value.Id}}.html" target="_blank">
+                <a href="item_{{$value.Id}}.html" target="_self">
                     <img src="{{$value.ProductImg | formatImage}}" alt="{{$value.Title}}"/>
                 </a>
             </div>
-            <div class="brand"><a href="item_{{$value.Id}}.html" target="_blank">{{$value.Title}}</a></div>
+            <div class="brand"><a href="item_{{$value.Id}}.html" target="_self">{{$value.Title}}</a></div>
             <div class="product">{{$value.Price}}元</div>
         </div>
     {{end}}
@@ -24,7 +24,8 @@
     <div class="clear"></div>
 </div>
 
-<!-- end 貨品 -->
+<!-- end 單品 -->
+
 <script>
     $(function () {
         $('#pagination').jqPaginator({

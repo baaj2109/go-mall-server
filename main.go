@@ -9,6 +9,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/plugins/cors"
+	_ "github.com/astaxie/beego/session/redis"
 )
 
 func main() {

@@ -18,7 +18,7 @@
             <ul>
             {{range $key,$value := .topMenuList}}
                 <li><a href="{{$value.Link}}"
-                    {{if eq $value.IsOpennew 2}} target="_blank" {{end}}>{{$value.Title}}</a>
+                    {{if eq $value.IsOpennew 2}} target="_self" {{end}}>{{$value.Title}}</a>
                 </li>
             {{end}}
                 <div class="clear"></div>

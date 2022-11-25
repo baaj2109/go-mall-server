@@ -3,6 +3,7 @@ package frontend
 import (
 	"LeastMall/common"
 	"LeastMall/models"
+	"fmt"
 	"regexp"
 	"strings"
 )
@@ -13,7 +14,7 @@ type AuthController struct {
 
 // / register first step
 func (c *AuthController) RegisterStep1() {
-	c.TplName = "fronted/auth/register_step1.html"
+	c.TplName = "frontend/auth/register_step1.html"
 }
 
 // register second step
@@ -63,15 +64,17 @@ func (c *AuthController) RegisterStep3() {
 // / send certification text
 func (c *AuthController) SendCode() {
 	phone := c.GetString("phone")
-	phoneCode := c.GetString("phone_code")
+	// phoneCode := c.GetString("phone_code")
+	phoneCode := strings.Trim(c.GetString("phone_code"), "")
 	phoneCodeId := c.GetString("phoneCodeId")
+
 	if phoneCodeId == "resend" {
 		/// 驗證session裡面驗證碼是否合法
 		sessionPhotoCode := c.GetSession("phone_code")
 		if sessionPhotoCode != phoneCode {
 			c.Data["json"] = map[string]interface{}{
 				"success": false,
-				"msg":     "輸入的圖形驗證碼不正確 無效請求",
+				"msg":     "輸入的圖形驗證碼不正確_resend",
 			}
 			c.ServeJSON()
 			return
@@ -87,7 +90,7 @@ func (c *AuthController) SendCode() {
 	}
 
 	c.SetSession("phone_code", phoneCode)
-	pattern := `^[\d]{11}$`
+	pattern := `^[\d]{4}$`
 	reg := regexp.MustCompile(pattern)
 	if !reg.MatchString(phone) {
 		c.Data["json"] = map[string]interface{}{
@@ -99,6 +102,7 @@ func (c *AuthController) SendCode() {
 	}
 	user := []models.User{}
 	models.DB.Where("phone=?", phone).Find(&user)
+	fmt.Print("user size: %d", len(user))
 	if len(user) > 0 {
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
@@ -123,6 +127,7 @@ func (c *AuthController) SendCode() {
 			if userTemp[0].SendCount < 5 {
 				common.SendMsg(smsCode)
 				c.SetSession("sms_code", smsCode)
+				c.SetSession("sign", sign)
 				oneUserSms := models.UserSms{}
 				models.DB.Where("id=?", userTemp[0].Id).Find(&oneUserSms)
 				oneUserSms.SendCount += 1
@@ -147,7 +152,7 @@ func (c *AuthController) SendCode() {
 		} else {
 			common.SendMsg(smsCode)
 			c.SetSession("sms_code", smsCode)
-			//发送验证码 并给userTemp写入数据
+			c.SetSession("sign", sign)
 			/// 發送驗證碼 並給 userTemp 寫入數據
 			oneUserSms := models.UserSms{
 				Ip:        ip,
@@ -175,7 +180,6 @@ func (c *AuthController) SendCode() {
 		c.ServeJSON()
 		return
 	}
-
 }
 
 // 驗證驗證碼

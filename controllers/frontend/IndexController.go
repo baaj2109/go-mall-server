@@ -52,4 +52,5 @@ func (c *IndexController) Get() {
 	endTime := time.Now().UnixNano()
 	fmt.Println("執行時間", endTime-startTime)
 	c.TplName = "frontend/index/index.html"
+	// c.TplName = "frontend/auth/register_step1.html"
 }

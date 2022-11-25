@@ -5,7 +5,8 @@
     <meta name="author" content="created by shirdon"/>
     <title>會員登入</title>
     <link rel="stylesheet" href="/static/frontend/css/login.css"/>
-    <script src="/static/frontend/js/jquery-1.10.1.js"></script>
+    <!-- <script src="/static/frontend/js/jquery-1.10.1.js"></script> -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
 </head>
 <body class="login_page">
 
@@ -48,7 +49,7 @@
 </div>
 <footer>
     <div class="copyright">繁体 | English | 常見問題</div>
-    <div class="copyright">LeastMall C1ay All Right Reserved<img src="/public/default/image/ghs.png" alt="">
+    <div class="copyright">LeastMall C1ay All Right Reserved<img src="/static/public/default/image/ghs.png" alt="">
     </div>
 </footer>
 <script>
@@ -59,7 +60,7 @@
             var phone_code = $('#phone_code').val();
             var phoneCodeId = $("input[name='captcha_id']").val();
             var prevPage = $("#prevPage").val();
-            var reg = /^[\d]{11}$/;
+            var reg = /^[\d]{4}$/;
             if (!reg.test(phone)) {
                 alert('手機輸入錯誤');
                 return false;
@@ -88,7 +89,7 @@
                     }
                 } else {
                     /// 改變驗證碼
-                    $(".error").html("Error：" + response.msg + ",請重新输入!")
+                    $(".error").html("Error:" + response.msg + ",請重新输入!")
                     
                     /// 改變驗證碼
                     var captchaImgSrc = $(".captcha-img").attr("src")

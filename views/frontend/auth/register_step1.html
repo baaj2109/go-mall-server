@@ -33,11 +33,11 @@
                 <div class="privacy_box">
                     <div class="msg">
                         <label class="n_checked now select-privacy">
-                            <input type="checkbox" checked="true"/> 註冊帳號即表示您同意遵守LeastMall商城 <a
-                                href="https://www.shirdon.com/leastmall/agreement/account/cn.html"
-                                class="inspect_link " title="用户协议" target="_blank">用戶協議</a>和<a
-                                href="https://www.shirdon.com/about/privacy/" class="inspect_link privacy_link"
-                                title=" 隱私政策 " target="_blank"> 隱私政策 </a>
+                            <input type="checkbox" checked="true"/> 
+                                註冊帳號即表示您同意遵守LeastMall商城 
+                                <a href="https://github.com/" class="inspect_link " title="用戶協議" target="_self">用戶協議</a>
+                                和
+                                <a href="https://github.com/about/privacy/" class="inspect_link privacy_link" title=" 隱私政策 " target="_self"> 隱私政策 </a>
                         </label>
                     </div>
                 </div>
@@ -53,15 +53,15 @@
                 var phone_code = $('#phone_code').val();
                 var phoneCodeId = $("input[name='captcha_id']").val();
 
-                var reg = /^[\d]{11}$/;
-                if (!reg.test(phone)) {
-                    $(".error").html("Error: 手機輸入錯誤");
-                    return false;
-                }
-                if (phone_code.length < 4) {
-                    $(".error").html("Error: 圖形驗證錯誤")
-                    return false;
-                }
+                // var reg = /^[\d]{11}$/;
+                // if (!reg.test(phone)) {
+                //     $(".error").html("Error: 手機輸入錯誤 ");
+                //     return false;
+                // }
+                // if (phone_code.length < 4) {
+                //     $(".error").html("Error: 圖形驗證錯誤")
+                //     return false;
+                // }
 
                 $.get('/auth/sendCode', {
                     phone: phone,

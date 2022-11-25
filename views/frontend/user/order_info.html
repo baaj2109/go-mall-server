@@ -34,19 +34,19 @@
                                 <div class="order-detail">
                                     <div class="order-summary">
                                         <div class="order-status">
-                                        {{if eq $value.OrderStatus 0}}
+                                        {{if eq .order.OrderStatus 0}}
                                             已下單 未付款
-                                        {{else if eq $value.OrderStatus 1}}
+                                        {{else if eq .order.OrderStatus 1}}
                                             已付款
-                                        {{else if eq $value.OrderStatus 2}}
+                                        {{else if eq .order.OrderStatus 2}}
                                             已配貨
-                                        {{else if eq $value.OrderStatus 3}}
+                                        {{else if eq .order.OrderStatus 3}}
                                             已發貨
-                                        {{else if eq $value.OrderStatus 4}}
+                                        {{else if eq .order.OrderStatus 4}}
                                             交易成功
-                                        {{else if eq $value.OrderStatus 5}}
+                                        {{else if eq .order.OrderStatus 5}}
                                             已退貨
-                                        {{else if eq $value.OrderStatus 6}}
+                                        {{else if eq .order.OrderStatus 6}}
                                             無效 已取消
                                         {{end}}
                                         </div>
@@ -78,7 +78,7 @@
                                              style="display:block;border:none;">
                                             <p class="delivery-num">
                                                 物流公司：
-                                                <a href="http://www.sf-express.com" target="_blank"
+                                                <a href="http://www.sf-express.com" target="_self"
                                                    data-stat-id="d4af14ade0c175da">黑貓</a>
                                                 貨運單號: xxxxssxxxx
                                             </p>
