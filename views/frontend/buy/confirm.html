@@ -1,0 +1,151 @@
+{{template "../public/page_header.html" .}}
+<!--end header -->
+<link rel="stylesheet" href="/static/frontend/css/pay.css"/>
+<script src="/static/frontend/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/static/backend/bootstrap/css/bootstrap.css">
+<!-- start banner_x -->
+<div class="banner_x center clearfix">
+    <a href="/" target="_blank">
+        <div class="logo fl"><img src="/static/frontend/image/logo_top.png"></div>
+    </a>
+    <div class="my_cart fl ml40">支付</div>
+</div>
+
+<div class="page-main">
+    <div class="checkout-box">
+        <div class="section section-order">
+            <div class="order-info clearfix">
+                <div class="fl">
+                    <h2 class="title">訂單提交成功！請繼續付款</h2>
+                    <p class="order-time" id="J_deliverDesc"></p>
+                    <p class="order-time">請在<span class="pay-time-tip">24小時</span>内完成支付, 超時後将取消訂單</p>
+                    <p class="post-info" id="J_postInfo">
+                        收貨訊息:{{.order.Name}} {{.order.Phone}} &nbsp;&nbsp; {{.order.Address}} </p>
+                </div>
+                <div class="fr">
+                    <p class="total">
+                        總額:<span class="money"><em>{{.order.AllPrice}}</em>元</span>
+                    </p>
+                    <br>
+                    <br>
+                    <a href="javascript:void(0);" class="show-detail" id="J_showDetail"
+                       data-stat-id="db85b2885a2fdc53">訂單詳情</a>
+                </div>
+            </div>
+            <i class="iconfont icon-right">√</i>
+            <div class="order-detail">
+                <ul>
+                    <li class="clearfix">
+                        <div class="content">
+                            <strong>訂單編號:</strong> <span class="order-num">{{.order.OrderId}}</span>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="content">
+                            <strong>收貨訊息:</strong>{{.order.Name}} {{.order.Phone}} &nbsp;&nbsp; {{.order.Address}}
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="content">
+                            <strong>商品名稱:</strong>
+                        {{range $key,$value:=.orderItem}}
+                            <p>{{$value.ProductTitle}} {{$value.GoodsVersion}} {{$value.GoodsColor}}
+                                數量:{{$value.ProductNum}} 價格:{{$value.ProductPrice}}</p>
+                        {{end}}
+                        </div>
+                    </li>
+                    <li class="clearfix hide">
+                        <div class="label">配送時間:</div>
+                        <div class="content">
+                            不限送貨時間
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section section-payment">
+            <div class="cash-title" id="J_cashTitle">
+                選擇以下支付方式付款
+            </div>
+            <div class="payment-box ">
+                <div class="payment-body">
+                    <ul class="clearfix payment-list J_paymentList J_linksign-customize">
+                        <li id="weixinPay">
+                            <img src="/static/frontend/image/applepay.png" alt="apple pay"/>
+                        </li>
+                        <li id="alipay">
+                            <a href="/alipay?id={{.order.Id}}" target="_blank"><img
+                                    src="/static/frontend/image/linepay.png" alt="line pay"/></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $(".show-detail").click(function () {
+            $(".order-detail").slideToggle();
+        })
+        $("#weixinPay").click(function () {
+            $('#weixinPayModel').modal('show');
+        })
+        $("#alipay").click(function () {
+            $('#alipayModel').modal('show');
+        })
+        $("#alipayDone").click(function () {
+            location.href = "/user/order"
+        })
+        setInterval(function () {
+            $.get('/buy/orderPayStatus?id={{.order.Id}}', function (response) {
+                console.log(response);
+                if (response.success) {
+                    location.href = '/user/order'
+                }
+            })
+        }, 5000);
+    })
+</script>
+
+<!-- apple pay -->
+<div class="modal fade" id="weixinPayModel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">apple pay</h4>
+            </div>
+            <div class="modal-body">
+                <img class="lcode" src="/wxpay?id={{.order.Id}}"/>
+                <img class="rphone" src="/static/frontend/image/phone.png"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- linepay -->
+<div class="modal fade" id="alipayModel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">line pay</h4>
+            </div>
+            <div class="modal-body">
+                支付完成後，頁面會自動跳轉到訂單頁面，若需要重新支付請點擊“繼續支付”按钮，若已完成支付請點擊“已完成支付”
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">繼續支付</button>
+                    <button type="button" class="btn btn-primary" id="alipayDone">已完成支付</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "../public/page_footer.html" .}}
+</body>
+</html>

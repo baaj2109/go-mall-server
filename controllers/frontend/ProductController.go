@@ -5,6 +5,7 @@ import (
 	"LeastMall/models"
 	"math"
 	"strconv"
+	"strings"
 )
 
 type ProductController struct {
@@ -113,5 +114,78 @@ func (c *ProductController) Collect() {
 		}
 		c.ServeJSON()
 	}
+}
 
+func (c *ProductController) ProductItem() {
+	c.BaseInit()
+
+	id := c.Ctx.Input.Param(":id")
+	/// get product information
+	product := models.Product{}
+	models.DB.Where("id=?", id).Find(&product)
+	c.Data["product"] = product
+
+	/// get relation product
+	relationProduct := []models.Product{}
+	product.RelationProduct = strings.ReplaceAll(product.RelationProduct, "，", ",")
+	relationIds := strings.Split(product.RelationProduct, ",")
+	models.DB.Where("id in (?)", relationIds).Select("id,title,price,product_version").Find(&relationProduct)
+	c.Data["relationProduct"] = relationProduct
+
+	/// get relation gift product
+	productGift := []models.Product{}
+	product.ProductGift = strings.ReplaceAll(product.ProductGift, "，", ",")
+	giftIds := strings.Split(product.ProductGift, ",")
+	models.DB.Where("id in (?)", giftIds).Select("id,title,price,product_img").Find(&productGift)
+	c.Data["productGift"] = productGift
+
+	/// get product color
+	productColor := []models.ProductColor{}
+	product.ProductColor = strings.ReplaceAll(product.ProductColor, "，", ",")
+	colorIds := strings.Split(product.ProductColor, ",")
+	models.DB.Where("id in (?)", colorIds).Find(&productColor)
+	c.Data["productColor"] = productColor
+
+	/// get product fitting
+	productFitting := []models.Product{}
+	product.ProductFitting = strings.ReplaceAll(product.ProductFitting, "，", ",")
+	fittingIds := strings.Split(product.ProductFitting, ",")
+	models.DB.Where("id in (?)", fittingIds).Select("id,title,price,product_img").Find(&productFitting)
+	c.Data["productFitting"] = productFitting
+
+	/// get product image
+	productImage := []models.ProductImage{}
+	models.DB.Where("product_id=?", product.Id).Find(&productImage)
+	c.Data["productImage"] = productImage
+
+	/// get product attribute
+	productAttr := []models.ProductAttr{}
+	models.DB.Where("product_id=?", product.Id).Find(&productAttr)
+	c.Data["productAttr"] = productAttr
+	c.TplName = "frontend/product/item.html"
+}
+
+func (c *ProductController) GetImgList() {
+	colorId, err1 := c.GetInt("color_id")
+	productId, err2 := c.GetInt("product_id")
+	/// get product image
+	productImage := []models.ProductImage{}
+	err3 := models.DB.Where("color_id=? AND product_id=?", colorId, productId).Find(&productImage).Error
+
+	if err1 != nil || err2 != nil || err3 != nil {
+		c.Data["json"] = map[string]interface{}{
+			"result":  "失败",
+			"success": false,
+		}
+		c.ServeJSON()
+	} else {
+		if len(productImage) == 0 {
+			models.DB.Where("product_id=?", productId).Find(&productImage)
+		}
+		c.Data["json"] = map[string]interface{}{
+			"result":  productImage,
+			"success": true,
+		}
+		c.ServeJSON()
+	}
 }

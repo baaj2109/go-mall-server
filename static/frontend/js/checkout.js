@@ -29,12 +29,12 @@
 				var address = $('#add_address').val();
 				var zipcode = $('#add_zipcode').val();
 				if (name == '' || phone == "" || address == "") {
-					alert('姓名、电话、地址不能为空')
+					alert('姓名、電話、地址不能为空')
 					return false;
 				}
-				var reg = /^[\d]{11}$/;
+				var reg = /^[\d]{5}$/;
 				if (!reg.test(phone)) {
-					alert('手机号格式不正确');
+					alert('手機格式不符合5數字');
 					return false;
 				}
 				$.post('/address/addAddress', { name: name, phone: phone, address: address, zipcode: zipcode }, function (response) {

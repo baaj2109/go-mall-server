@@ -4,10 +4,41 @@ import (
 	"LeastMall/models"
 	"math"
 	"strconv"
+	"time"
 )
 
 type UserController struct {
 	BaseController
+}
+
+func (c *UserController) Get() {
+	c.BaseInit()
+	user := models.User{}
+	models.Cookie.Get(c.Ctx, "userinfo", &user)
+	c.Data["user"] = user
+	time := time.Now().Hour()
+	if time >= 12 && time <= 18 {
+		c.Data["Hello"] = "下午好"
+	} else if time >= 6 && time < 12 {
+		c.Data["Hello"] = "上午好"
+	} else {
+		c.Data["Hello"] = "晚上好"
+	}
+	order := []models.Order{}
+	models.DB.Where("uid=?", user.Id).Find(&order)
+	var wait_pay int
+	var wait_rec int
+	for i := 0; i < len(order); i++ {
+		if order[i].PayStatus == 0 {
+			wait_pay += 1
+		}
+		if order[i].OrderStatus >= 2 && order[i].OrderStatus < 4 {
+			wait_rec += 1
+		}
+	}
+	c.Data["wait_pay"] = wait_pay
+	c.Data["wait_rec"] = wait_rec
+	c.TplName = "frontend/user/welcome.html"
 }
 
 // 展示訂單清單

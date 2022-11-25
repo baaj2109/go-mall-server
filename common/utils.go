@@ -78,7 +78,7 @@ func Md5(str string) string {
 	return string(hex.EncodeToString(m.Sum(nil)))
 }
 
-// 获取当前时间戳
+// get current time
 func GetUnix() int64 {
 	fmt.Println(time.Now().Unix())
 	return time.Now().Unix()
@@ -88,4 +88,9 @@ func SendMsg(str string) {
 	// 短信验证码需要到相关网站申请
 	// 目前先固定一个值
 	ioutil.WriteFile("test_send.txt", []byte(str), 06666)
+}
+
+func GenerateOrderId() string {
+	template := "200601021504"
+	return time.Now().Format(template) + GetRandomNum()
 }

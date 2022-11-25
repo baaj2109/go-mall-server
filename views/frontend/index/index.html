@@ -169,7 +169,10 @@
         {{range $key,$value := .phoneList}}
             <div class="hot fl">
                 <div class="newproduct"><span style="background:#fff"></span></div>
-                <div class="tu"><a href="item_{{$value.Id}}.html"><img src="{{$value.ProductImg | formatImage}}"></a>
+                <div class="tu">
+                    <a href="item_{{$value.Id}}.html">
+                        <img src="{{$value.ProductImg | formatImage}}">
+                    </a>
                 </div>
                 <div class="secondkill"><a href="">{{$value.Title}}</a></div>
                 <div class="product">{{$value.Price}}元</div>

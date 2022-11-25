@@ -1,0 +1,73 @@
+{{template "../public/page_header.html" .}}
+{{template "../public/banner.html" .}}
+<link rel="stylesheet" href="/static/frontend/css/welcome.css"/>
+<!-- self_info -->
+<div class="grzxbj">
+    <div class="selfinfo center">
+        <div class="lfnav fl">
+            <div class="ddzx">用戶中心</div>
+            <div class="subddzx">
+            {{template "../public/user_left.html" .}}
+            </div>
+        </div>
+        <div class="rtcont fr">
+            <div class="portal-content-box">
+                <div class="box-bd">
+                    <div class="portal-main clearfix">
+                        <div class="user-card">
+                            <h2 class="username">{{.user.Phone}}</h2>
+                            <p class="tip">{{.Hello}}</p>
+                            <a class="link"
+                               href="/pass/userInfo"
+                               target="_self"
+                               data-stat-id="30d619c492c43471"
+                               onclick="_msq.push(['trackEvent', 'f4f3444fdfa3d27a-30d619c492c43471', '/pass/userInfo', 'pcpid', '']);">修改個人訊息
+                                &gt;</a>
+                            <img class="avatar"
+                                 src="/static/public/img/avatar.png"
+                                 width="150" height="150" alt="2152135723">
+                        </div>
+                        <div class="user-actions">
+                            <ul class="action-list">
+                                <li>帳戶安全：<span class="level level-2">普通</span></li>
+                                <li>綁定手機：<span class="tel">{{.user.Phone}}</span></li>
+
+                                <li>綁定信箱：<span class="tel"></span><a class="btn btn-small btn-primary"
+                                                                     href="/pass/userInfo"
+                                                                     target="_self"
+                                                                     data-stat-id="d36648c4ef44cb77"
+                                                                     onclick="_msq.push(['trackEvent', 'f4f3444fdfa3d27a-d36648c4ef44cb77', '/pass/userInfo', 'pcpid', '']);">綁定</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portal-sub">
+                        <ul class="info-list clearfix">
+                            <li>
+                                <h3>待支付的訂單：<span class="num">{{.wait_pay}}</span></h3>
+                                <a href="/user/order?order_status=0" data-stat-id="ff48b3f50874dae7">查看待支付訂單</a>
+                                <img src="//s01.mifile.cn/i/user/portal-icon-1.png" alt="">
+                            </li>
+                            <li>
+                                <h3>待收貨的訂單：<span class="num">{{.wait_rec}}</span></h3>
+                                <a href="/user/order?order_status=3" data-stat-id="f7b15ff4b8710895">查看待收貨訂單</a>
+                                <img src="//s01.mifile.cn/i/user/portal-icon-2.png" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!-- self_info -->
+
+<!-- <footer class="mt20 center">
+    <div class="mt20">LeastMall商城|隐私政策|Select Region</div>
+    <div>LeastMall商城 蜀ICP证xxxxxxx号 蜀ICP备xxxxxxxxxxx号 蜀公网安备xxxxxxxxxxxxx号</div>
+</footer> -->
+{{ template "../public/page_footer.html" .}}
+</body>
+
+</html>

@@ -22,7 +22,7 @@
                             <li><a href="/user/order?order_status=0">待付款</a></li>
                             <li><a href="/user/order?order_status=1">已付款</a></li>
                             <li><a href="/user/order?order_status=3">待收貨</a></li>
-                            <li><a href="/user/order?order_status=6">已關閉</a></li>
+                            <li><a href="/user/order?order_status=6">已完成</a></li>
                         </ul>
                         <form id="J_orderSearchForm" class="search-form clearfix"
                               action="/user/order" method="get">
@@ -85,7 +85,7 @@
                             {{else}}
                                 <span>
 										<a class="delete btn btn-primary" href=
-                                                "/buy/confirm?id={{$value.Id}}">去支付</a>
+                                                "/buy/confirm?id={{$value.Id}}">下訂單</a>
 										<br>
 										<br>
 										<a class="delete btn" href=
@@ -99,7 +99,7 @@
                     <div id="page" class="pagination fr"></div>
                 </div>
             {{else}}
-                <p style="text-align:center; padding-top:100px;">没有查找到訂單</p>
+                <p style="text-align:center; padding-top:100px;">沒有訂單</p>
             {{end}}
             </div>
             <script>

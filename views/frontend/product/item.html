@@ -16,18 +16,12 @@
                     <img src="{{$value.ImgUrl | formatImage}}"/>
                 </div>
             {{end}}
-
             </div>
-
             <div class="swiper-pagination"></div>
-
             <!-- Add Arrows -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
-
         </div>
-
-
     </div>
     <div class="right fr">
         <div class="h3 ml20 mt20">{{.product.Title}}</div>
@@ -62,7 +56,6 @@
                 </a>
             </div>
         {{end}}
-
         </div>
     {{end}}
         <div class="xqxq mt10 ml20">
@@ -79,7 +72,7 @@
         {{else}}
             <input class="addToCart" type="button" name="addToCart" id="collect" value="加入收藏"/>
         {{end}}
-            <input class="addToCart" type="button" name="addToCart" id="addCart" value="加入购物车"/>
+            <input class="addToCart" type="button" name="addToCart" id="addCart" value="加入購物車"/>
 
         </div>
     </div>
@@ -92,7 +85,7 @@
 
     <div class="c_left">
 
-        <h2>看了又看</h2>
+        <!-- <h2>看了又看</h2> -->
     {{range $key,$value:=.productAds}}
         <div class="item">
 
@@ -115,14 +108,10 @@
 
     <div class="c_right">
         <ul class="detail_list clearfix">
-
-            <li class="">詳情描述</li>
-
-            <li class="">規格參數</li>
-
-            <li class="">用戶評價</li>
+            <li class="">介紹</li>
+            <li class="">規格</li>
+            <li class="">評價</li>
         </ul>
-
 
         <div class="detail_info">
 
