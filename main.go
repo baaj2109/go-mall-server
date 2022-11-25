@@ -22,6 +22,9 @@ func main() {
 	beego.AddFuncMap("formatAttribute", common.FormatAttribute)
 	beego.AddFuncMap("setting", models.GetSettingByColumn)
 
+	// / set logger
+	common.InitLogger()
+
 	/// 後台設定
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
 		AllowOrigins: []string{"127.0.0.1"},

@@ -10,6 +10,7 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20221013030248-663e2500819c // indirect
 	github.com/jinzhu/gorm v1.9.16
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
+	github.com/processout/applepay v0.0.0-20221101161837-0db22b256ec0
 	github.com/prometheus/client_golang v1.14.0 // indirect
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
 	github.com/siddontang/go v0.0.0-20180604090527-bdc77568d726 // indirect
