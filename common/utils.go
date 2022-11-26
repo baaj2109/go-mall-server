@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math/rand"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -93,4 +94,14 @@ func SendMsg(str string) {
 func GenerateOrderId() string {
 	template := "200601021504"
 	return time.Now().Format(template) + GetRandomNum()
+}
+
+func GetUnixNano() int64 {
+	return time.Now().UnixNano()
+}
+
+func VerifyEmail(email string) bool {
+	pattern := `\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*`
+	reg := regexp.MustCompile(pattern)
+	return reg.MatchString(email)
 }

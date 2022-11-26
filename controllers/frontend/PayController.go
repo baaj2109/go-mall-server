@@ -33,7 +33,8 @@ func init() {
 		),
 	)
 	if err != nil {
-		panic(err)
+		beego.Alert(err)
+		return
 	}
 	beego.Info("Apple Pay test app starting")
 }
