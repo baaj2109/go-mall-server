@@ -14,6 +14,7 @@ type Auth struct {
 	Description string
 	Status      int
 	AddTime     int
+	Sort        int
 	AuthItem    []Auth `gorm:"foreignkey:ModuleId;association_foreignkey:Id"`
 	Checked     bool   `gorm:"-"` // 忽略本字段
 }

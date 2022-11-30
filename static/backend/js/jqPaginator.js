@@ -240,10 +240,10 @@
 
     $.jqPaginator.defaultOptions = {
         wrapper: '',
-        first: '<li class="first"><a href="javascript:;">第一页</a></li>',
-        prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
-        next: '<li class="next"><a href="javascript:;">下一页</a></li>',
-        last: '<li class="last"><a href="javascript:;">最后一页</a></li>',
+        first: '<li class="first"><a href="javascript:;">第一頁</a></li>',
+        prev: '<li class="prev"><a href="javascript:;">上一頁</a></li>',
+        next: '<li class="next"><a href="javascript:;">下一頁</a></li>',
+        last: '<li class="last"><a href="javascript:;">最后一頁</a></li>',
         page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
         totalPages: 0,
         totalCounts: 0,

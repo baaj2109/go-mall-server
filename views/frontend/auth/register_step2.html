@@ -62,7 +62,7 @@
                     var phone = $("#phone").val()
                     var phone_code = $("#phone_code").val()
                     var phoneCodeId = "resend"
-                    // alert('重新发送');
+                    // alert('重新發送');
                     $.get('/auth/sendCode', {
                         phone: phone,
                         phone_code: phone_code,
@@ -71,7 +71,7 @@
                         console.log(response)
                         if (response.success != true) {
                             //更改驗證碼
-                            $(".error").html("Error：" + response.msg + ",請重新輸入!")
+                            $(".error").html("Error:" + response.msg + ",請重新輸入!")
                         }
                     })
                 })
@@ -85,7 +85,7 @@
                         if (response.success == true) {
                             location.href = "/auth/registerStep3?sign=" + sign + "&sms_code=" + sms_code
                         } else {
-                            $(".error").html("Error：" + response.msg)
+                            $(".error").html("Error:" + response.msg)
                         }
                     })
                 })

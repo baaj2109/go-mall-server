@@ -23,7 +23,7 @@
                     el: '.swiper-pagination',
                     clickable :true
                 },
-                effect:'fade'   //動畫效果：漸變
+                effect:'fade'   //動畫效果:漸變
                 
             });
         },

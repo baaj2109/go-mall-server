@@ -6,6 +6,7 @@ require github.com/astaxie/beego v1.12.3
 
 require (
 	github.com/OwnLocal/goes v1.0.0 // indirect
+	github.com/aliyun/aliyun-oss-go-sdk v2.2.6+incompatible
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gomarkdown/markdown v0.0.0-20221013030248-663e2500819c // indirect
 	github.com/jinzhu/gorm v1.9.16

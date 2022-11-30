@@ -16,7 +16,7 @@
                 if(addressCount>0){
                     return true;
                 }				
-                alert('请选择收货地址');
+                alert('請選擇收貨地址');
                 return false;				
             })
             
@@ -29,7 +29,7 @@
 				var address = $('#add_address').val();
 				var zipcode = $('#add_zipcode').val();
 				if (name == '' || phone == "" || address == "") {
-					alert('姓名、電話、地址不能为空')
+					alert('姓名. 電話. 地址不能為空')
 					return false;
 				}
 				var reg = /^[\d]{5}$/;

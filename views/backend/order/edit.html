@@ -1,0 +1,56 @@
+{{template "../public/page_header.html"}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                訂單訊息修改
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive input-form">
+                    <form action="/{{config "String" "adminPath" ""}}/order/goEdit" method="post"
+                          enctype="multipart/form-data">
+                        <input type="hidden" value="{{.order.Id}}" name="id">
+                        <ul>
+                            <li> 訂單號: <input type="text" name="order_id" value="{{.order.OrderId}}"/></li>
+                            <li> 總價格: <input type="text" name="all_price" value="{{.order.AllPrice}}"/></li>
+                            <li> 姓名: <input type="text" name="name" value="{{.order.Name}}"/></li>
+                            <li> 手機號: <input type="text" name="phone" value="{{.order.Phone}}"/></li>
+                            <li> 收獲地址: <input type="text" name="address" value="{{.order.Address}}"/></li>
+                            <li> 郵遞區號: <input type="text" name="zipcode" value="{{.order.Zipcode}}"/></li>
+                            <li> 付款狀態:
+                                <select name="pay_status" id="pay_status">
+                                    <option value="0"{{if eq .order.PayStatus 0}}selected{{end}}>未支付</option>
+                                    <option value="1"{{if eq .order.PayStatus 1}}selected{{end}}>已支付</option>
+                                </select>
+                            </li>
+                            <li> 支付類型:
+                                <select name="pay_type" id="pay_type">
+                                    <option value="0"{{if eq .order.PayType 0}}selected{{end}}>applepay</option>
+                                    <option value="1"{{if eq .order.PayType 1}}selected{{end}}>linepay</option>
+                                </select>
+                            </li>
+                            <li> 訂單狀態:
+                                <select name="order_status" id="order_status">
+                                    <option value="0"{{if eq .order.OrderStatus 0}}selected{{end}}>已下單</option>
+                                    <option value="1"{{if eq .order.OrderStatus 1}}selected{{end}}>已付款</option>
+                                    <option value="2"{{if eq .order.OrderStatus 2}}selected{{end}}>已配貨</option>
+                                    <option value="3"{{if eq .order.OrderStatus 3}}selected{{end}}>發貨</option>
+                                    <option value="4"{{if eq .order.OrderStatus 4}}selected{{end}}>交易成功</option>
+                                    <option value="5"{{if eq .order.OrderStatus 5}}selected{{end}}>退貨</option>
+                                    <option value="6"{{if eq .order.OrderStatus 6}}selected{{end}}>取消</option>
+                                </select>
+                            </li>
+                            <br/>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

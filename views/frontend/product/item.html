@@ -26,7 +26,7 @@
     <div class="right fr">
         <div class="h3 ml20 mt20">{{.product.Title}}</div>
         <div class="jianjie mr40 ml20 mt10">{{.product.SubTitle}}</div>
-        <div class="jiage ml20 mt10">現價：{{.product.Price}}元　<span class="old_price">原價：{{.product.MarketPrice}}元</span>
+        <div class="jiage ml20 mt10">現價:{{.product.Price}}元<span class="old_price">原價:{{.product.MarketPrice}}元</span>
         </div>
     {{$productId := .product.Id}}
     {{if .relationProduct}}
@@ -64,7 +64,7 @@
                 <div class="right1 fr">{{.product.Price}}元</div>
                 <div class="clear"></div>
             </div>
-            <div class="bot mt20 ft20 ftbc">總計：{{.product.Price}}元</div>
+            <div class="bot mt20 ft20 ftbc">總計:{{.product.Price}}元</div>
         </div>
         <div class="xiadan ml20 mt10">
         {{if .collectStatus}}

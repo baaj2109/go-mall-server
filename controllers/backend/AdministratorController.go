@@ -113,7 +113,7 @@ func (c *AdministratorController) GoEdit() {
 	administrator.RoleId = roleId
 	err2 := models.DB.Save(&administrator).Error
 	if err2 != nil {
-		c.Error("修改管理員失败", "/administrator/edit?id="+strconv.Itoa(id))
+		c.Error("修改管理員失敗", "/administrator/edit?id="+strconv.Itoa(id))
 	} else {
 		c.Success("修改管理員成功", "/administrator")
 	}
@@ -127,5 +127,5 @@ func (c *AdministratorController) Delete() {
 	}
 	administrator := models.Administrator{Id: id}
 	models.DB.Delete(&administrator)
-	c.Success("删除管理員成功", "/administrator")
+	c.Success("刪除管理員成功", "/administrator")
 }

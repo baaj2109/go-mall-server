@@ -1,0 +1,65 @@
+{{template "../public/page_header.html"}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr class="th">
+                    <th>輪播圖名稱</th>
+                    <th>輪播圖類型</th>
+                    <th>輪播圖圖片</th>
+                    <th>跳轉地址</th>
+                    <th class="text-center">排序</th>
+                    <th class="text-center">狀態</th>
+                    <th class="text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $key,$value := .bannerList}}
+                <tr>
+                    <td>{{$value.Title}}</td>
+                    <td>
+                    {{if eq $value.BannerType 1}}
+                        網站
+                    {{else if eq $value.BannerType 2}}
+                        APP
+                    {{else}}
+                        小程序
+                    {{end}}
+                    </td>
+                    <td>
+                    {{if ne $value.BannerImg ""}}
+                        <img src="{{$value.BannerImg | formatImage}}" width="80"/>
+                    {{end}}
+                    </td>
+                    <td>{{$value.Link}}</td>
+                    <td class="text-center">
+                        <span class="chSpanNum" data-id="{{$value.Id}}" data-table="banner" data-field="sort"
+                              data-num="{{$value.Sort}}">{{$value.Sort}}</span>
+                    </td>
+                    <td align="center">
+                    {{if eq $value.Status 1}}
+                        <img src="/static/backend/images/yes.gif" class="chStatus" data-id="{{$value.Id}}"
+                             data-table="banner" data-field="status"/>
+                    {{else}}
+                        <img src="/static/backend/images/no.gif" class="chStatus" data-id="{{$value.Id}}"
+                             data-table="banner" data-field="status"/>
+                    {{end}}
+                    </td>
+                    <td class="text-center">
+                        <a href="/{{config "String" "adminPath" ""}}/banner/edit?id={{$value.Id}}"/>修改</a> 
+
+                        <a class="delete"
+                           href="/{{config "String" "adminPath" ""}}/banner/delete?id={{$value.Id}}"/>刪除</a>
+                    </td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

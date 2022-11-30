@@ -86,8 +86,8 @@ func GetUnix() int64 {
 }
 
 func SendMsg(str string) {
-	// 短信验证码需要到相关网站申请
-	// 目前先固定一个值
+	// 短信验证码需要到相关網站申請
+	// 目前先固定一個值
 	ioutil.WriteFile("test_send.txt", []byte(str), 06666)
 }
 

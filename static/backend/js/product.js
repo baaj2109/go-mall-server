@@ -1,4 +1,4 @@
-//config.adminPath已在base.js中已定义，当前页面可以直接使用，引入js的时需要注意先引入base.js，然后再引入当前js
+//config.adminPath已在base.js中已定义，當前頁面可以直接使用，引入js的時需要注意先引入base.js，然后再引入當前js
 $(function(){		
 	productApp.init()
 })
@@ -10,7 +10,7 @@ var productApp={
         this.initRelationProduct();
         this.initDeleteProductImage()
     },	
-     //配置富文本编辑器
+     //配置富文本編輯器
 	initFroalaEditor:function(){
         new FroalaEditor('#content', {
             height: 200,
@@ -18,7 +18,7 @@ var productApp={
             imageUploadURL: '/'+config.adminPath+'/product/goUpload'
         });
     },
-     //动态生成商品规格参数
+     //動態生成商品規格参數
 	initProductType:function(){
 		$("#product_type_id").change(function () {
             var cate_id = $(this).val()
@@ -30,12 +30,12 @@ var productApp={
                     data = response.result;
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].attr_type == 1) {
-                            str += '<li><span>' + data[i].title + ': 　</span>  <input type="hidden" name="attr_id_list" value="' + data[i].id + '" />   <input type="text" name="attr_value_list" /></li>'
+                            str += '<li><span>' + data[i].title + ': </span>  <input type="hidden" name="attr_id_list" value="' + data[i].id + '" />   <input type="text" name="attr_value_list" /></li>'
                         } else if (data[i].attr_type == 2) {
-                            str += '<li><span>' + data[i].title + ': 　</span> <input type="hidden" name="attr_id_list" value="' + data[i].id + '">  <textarea cols="50" rows="3" name="attr_value_list"></textarea></li>'
+                            str += '<li><span>' + data[i].title + ': </span> <input type="hidden" name="attr_id_list" value="' + data[i].id + '">  <textarea cols="50" rows="3" name="attr_value_list"></textarea></li>'
                         } else {
                             var attrArray = data[i].attr_value.split("\n")
-                            str += '<li><span>' + data[i].title + ': 　</span>  <input type="hidden" name="attr_id_list" value="' + data[i].id + '" />';
+                            str += '<li><span>' + data[i].title + ': </span>  <input type="hidden" name="attr_id_list" value="' + data[i].id + '" />';
                             str += '<select name="attr_value_list">'
                             for (var j = 0; j < attrArray.length; j++) {
                                 str += '<option value="' + attrArray[j] + '">' + attrArray[j] + '</option>';
@@ -50,7 +50,7 @@ var productApp={
             })
         })
 	},
-    //批量上传图片
+    //批量上傳圖片
     initPhotoUploader(){
         $('#photoUploader').diyUpload({
             url: '/'+config.adminPath+'/product/goUpload',
@@ -65,7 +65,7 @@ var productApp={
         });
 
     },
-    //修改颜色
+    //修改顏色
     initRelationProduct(){
         $(".relation_product_color").change(function(){
             var color_id=$(this).val();
@@ -75,11 +75,11 @@ var productApp={
             });
         })
     },
-    //删除图库信息
+    //刪除圖庫訊息
     initDeleteProductImage(){
         $(".product_image_delete").click(function(){
             var product_image_id=$(this).attr("product_image_id");
-            var flag = confirm("确定要删除吗?");
+            var flag = confirm("確定要刪除吗?");
             var _that=this;
             if(flag){
                 $.get('/'+config.adminPath+'/product/removeProductImage',{product_image_id:product_image_id},function(response){

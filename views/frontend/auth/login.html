@@ -27,12 +27,12 @@
         </div>
         <div class="login_main center">
             <input type="hidden" id="prevPage" value="{{.prevPage}}">
-            <div class="username">手機：<input class="inputclass" id="phone" type="text" name="phone"
-                                             placeholder="請输入你的用戶名"/></div>
-            <div class="username">密碼：<input class="inputclass" id="password" type="password" name="password"
-                                             placeholder="請输入你的密碼"/></div>
+            <div class="username">手機:<input class="inputclass" id="phone" type="text" name="phone"
+                                             placeholder="請輸入你的用戶名"/></div>
+            <div class="username">密碼:<input class="inputclass" id="password" type="password" name="password"
+                                             placeholder="請輸入你的密碼"/></div>
             <div class="username">
-                <div class="left fl">驗證碼：<input class="verificode" id="phone_code" type="text" name="phone_code"
+                <div class="left fl">驗證碼:<input class="verificode" id="phone_code" type="text" name="phone_code"
                                                 placeholder="請輸入驗證碼"/></div>
                 <div class="right fl">
                 {{create_captcha}}
@@ -73,7 +73,7 @@
                 alert('驗證碼錯誤');
                 return false;
             }
-            //ajax请求
+            //ajax請求
             $.post('/auth/goLogin', {
                 phone: phone,
                 password: password,
@@ -89,7 +89,7 @@
                     }
                 } else {
                     /// 改變驗證碼
-                    $(".error").html("Error:" + response.msg + ",請重新输入!")
+                    $(".error").html("Error:" + response.msg + ",請重新輸入!")
                     
                     /// 改變驗證碼
                     var captchaImgSrc = $(".captcha-img").attr("src")

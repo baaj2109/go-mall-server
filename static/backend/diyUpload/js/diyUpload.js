@@ -1,24 +1,24 @@
 /* 
-*	jQuery文件上传插件,封装UI,上传处理操作采用Baidu WebUploader;
+*	jQuery文件上傳插件,封装UI,上傳处理操作采用Baidu WebUploader;
 *	@Author 黑爪爪;
 */
 (function( $ ) {
 	
     $.fn.extend({
 		/*
-		*	上传方法 opt为参数配置;
-		*	serverCallBack回调函数 每个文件上传至服务端后,服务端返回参数,无论成功失败都会调用 参数为服务器返回信息;
+		*	上傳方法 opt為参數配置;
+		*	serverCallBack回调函數 每個文件上傳至服务端后,服务端返回参數,无论成功失敗都会调用 参數為服务器返回訊息;
 		*/
         diyUpload:function( opt, serverCallBack ) {
  			if ( typeof opt != "object" ) {
-				alert('参数错误!');
+				alert('参數錯誤!');
 				return;	
 			}
 			
 			var $fileInput = $(this);
 			var $fileInputId = $fileInput.attr('id');
 			
-			//组装参数;
+			//组装参數;
 			if( opt.url ) {
 				opt.server = opt.url; 
 				delete opt.url;
@@ -34,7 +34,7 @@
 				delete opt.error;
 			}
 			
-			//迭代出默认配置
+			//迭代出默認配置
 			$.each( getOption( '#'+$fileInputId ),function( key, value ){
 					opt[ key ] = opt[ key ] || value; 
 			});
@@ -47,7 +47,7 @@
 			var webUploader = getUploader( opt );
 			
 			if ( !WebUploader.Uploader.support() ) {
-				alert( ' 上传组件不支持您的浏览器！');
+				alert( ' 上傳组件不支持您的浏览器！');
 				return false;
        		}
 			
@@ -67,16 +67,16 @@
 				
 			});
 			
-			//全部上传结束后触发;
+			//全部上傳结束后触發;
 			webUploader.on('uploadFinished', function(){
 				$fileInput.next('.parentFileBox').children('.diyButton').remove();
 			});
-			//绑定发送至服务端返回后触发事件;
+			//绑定發送至服务端返回后触發事件;
 			webUploader.on('uploadAccept', function( object ,data ){
 				if ( serverCallBack ) serverCallBack( data );
 			});
 			
-			//上传成功后触发事件;
+			//上傳成功后触發事件;
 			webUploader.on('uploadSuccess',function( file, response ){
 				var $fileBox = $('#fileBox_'+file.id);
 				var $diyBar = $fileBox.find('.diyBar');	
@@ -89,32 +89,32 @@
 				}	
 			});
 			
-			//上传失败后触发事件;
+			//上傳失敗后触發事件;
 			webUploader.on('uploadError',function( file, reason ){
 				var $fileBox = $('#fileBox_'+file.id);
 				var $diyBar = $fileBox.find('.diyBar');	
-				showDiyProgress( 0, $diyBar , '上传失败!' );
-				var err = '上传失败! 文件:'+file.name+' 错误码:'+reason;
+				showDiyProgress( 0, $diyBar , '上傳失敗!' );
+				var err = '上傳失敗! 文件:'+file.name+' 錯誤码:'+reason;
 				if ( errorCallBack ) {
 					errorCallBack( err );
 				}
 			});
 			
-			//选择文件错误触发事件;
+			//選擇文件錯誤触發事件;
 			webUploader.on('error', function( code ) {
 				var text = '';
 				switch( code ) {
-					case  'F_DUPLICATE' : text = '该文件已经被选择了!' ;
+					case  'F_DUPLICATE' : text = '該文件已经被選擇了!' ;
 					break;
-					case  'Q_EXCEED_NUM_LIMIT' : text = '上传文件数量超过限制!' ;
+					case  'Q_EXCEED_NUM_LIMIT' : text = '上傳文件數量超过限制!' ;
 					break;
 					case  'F_EXCEED_SIZE' : text = '文件大小超过限制!';
 					break;
-					case  'Q_EXCEED_SIZE_LIMIT' : text = '所有文件总大小超过限制!';
+					case  'Q_EXCEED_SIZE_LIMIT' : text = '所有文件總大小超过限制!';
 					break;
-					case 'Q_TYPE_DENIED' : text = '文件类型不正确或者是空文件!';
+					case 'Q_TYPE_DENIED' : text = '文件類型不正確或者是空文件!';
 					break;
-					default : text = '未知错误!';
+					default : text = '未知錯誤!';
  					break;	
 				}
             	alert( text );
@@ -122,49 +122,49 @@
         }
     });
 	
-	//Web Uploader默认配置;
+	//Web Uploader默認配置;
 	function getOption(objId) {
 		/*
-		*	配置文件同webUploader一致,这里只给出默认配置.
+		*	配置文件同webUploader一致,这里只给出默認配置.
 		*	具体参照:http://fex.baidu.com/webuploader/doc/index.html
 		*/
 		return {
 			//按钮容器;
 			pick:{
 				id:objId,
-				label:"点击选择图片"
+				label:"點擊選擇圖片"
 			},
-			//类型限制;
+			//類型限制;
 			accept:{
 				title:"Images",
 				extensions:"gif,jpg,jpeg,bmp,png",
 				mimeTypes:"image/*"
 			},
-			//配置生成缩略图的选项
+			//配置生成缩略圖的選项
 			thumb:{
 				width:170,
 				height:150,
-				// 图片质量，只有type为`image/jpeg`的时候才有效。
+				// 圖片质量，只有type為`image/jpeg`的時候才有效。
 				quality:70,
-				// 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+				// 是否允许放大，如果想要生成小圖的時候不失真，此選项应該設置為false.
 				allowMagnify:false,
 				// 是否允许裁剪。
 				crop:true,
-				// 为空的话则保留原有图片格式。
-				// 否则强制转换成指定的类型。
+				// 為空的话则保留原有圖片格式。
+				// 否则强制轉换成指定的類型。
 				type:"image/jpeg"
 			},
-			//文件上传方式
+			//文件上傳方式
 			method:"POST",
 			//服务器地址;
 			server:"",
-			//是否已二进制的流的方式发送文件，这样整个上传内容php://input都为文件内容
+			//是否已二进制的流的方式發送文件，这样整個上傳内容php://input都為文件内容
 			sendAsBinary:false,
-			// 开起分片上传。 thinkphp的上传类测试分片无效,图片丢失;
+			// 開起分片上傳。 thinkphp的上傳類测试分片无效,圖片丢失;
 			chunked:true,
 			// 分片大小
 			chunkSize:512 * 1024,
-			//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+			//最大上傳的文件數量, 總文件大小,單個文件大小(單位字节);
 			fileNumLimit:50,
 			fileSizeLimit:5000 * 1024,
 			fileSingleSizeLimit:500 * 1024
@@ -182,7 +182,7 @@
 		
 		if ( progress >= 100 ) {
 			progress = progress + '%';
-			text = text || '上传完成';
+			text = text || '上傳完成';
 		} else {
 			progress = progress + '%';
 			text = text || progress;
@@ -206,7 +206,7 @@
 		
 	}
 	
-	//创建文件操作div;	
+	//創建文件操作div;	
 	function createBox( $fileInput, file, webUploader ) {
 
 		var file_id = file.id;
@@ -223,29 +223,29 @@
 		
 		}
 		
-		//创建按钮
+		//創建按钮
 		if ( $parentFileBox.find('.diyButton').length <= 0 ) {
 			
 			var div = '<div class="diyButton"> \
-						<a class="diyStart" href="javascript:void(0)">开始上传</a> \
+						<a class="diyStart" href="javascript:void(0)">開始上傳</a> \
 						<a class="diyCancelAll" href="javascript:void(0)">全部取消</a> \
 					</div>';
 			$parentFileBox.append( div );
 			var $startButton = $parentFileBox.find('.diyStart');
 			var $cancelButton = $parentFileBox.find('.diyCancelAll');
 			
-			//开始上传,暂停上传,重新上传事件;
+			//開始上傳,暂停上傳,重新上傳事件;
 			var uploadStart = function (){
 				webUploader.upload();
-				$startButton.text('暂停上传').one('click',function(){
+				$startButton.text('暂停上傳').one('click',function(){
 						webUploader.stop();
-						$(this).text('继续上传').one('click',function(){
+						$(this).text('继续上傳').one('click',function(){
 								uploadStart();
 						});
 				});
 			}
 				
-			//绑定开始上传按钮;
+			//绑定開始上傳按钮;
 			$startButton.one('click',uploadStart);
 			
 			//绑定取消全部按钮;
@@ -291,7 +291,7 @@
 			return;	
 		}
 		
-		//生成预览缩略图;
+		//生成预览缩略圖;
 		webUploader.makeThumb( file, function( error, dataSrc ) {
 			if ( !error ) {	
 				$fileBox.find('.viewThumb').append('<img src="'+dataSrc+'" >');
@@ -299,7 +299,7 @@
 		});	
 	}
 	
-	//获取文件类型;
+	//獲取文件類型;
 	function getFileTypeClassName ( type ) {
 		var fileType = {};
 		var suffix = '_diy_bg';

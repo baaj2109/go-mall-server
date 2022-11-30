@@ -8,13 +8,13 @@
         },
         deleteConfirm:function(){
             $('.delete').click(function(){    
-                var flag=confirm('您确定要删除吗?');    
+                var flag=confirm('您確定要刪除吗?');    
                 return flag;    
             })
     
         },    
         initCheckBox(){
-            //全选按钮点击
+            //全選按钮點擊
             $("#checkAll").click(function() {               
                 if (this.checked) {
                     $(":checkbox").prop("checked", true);
@@ -36,7 +36,7 @@
                
             });    
 
-            // //点击单个选择框按钮的时候触发
+            // //點擊單個選擇框按钮的時候触發
             var _that=this;  //this是app对象            
             $(".cart_list :checkbox").click(function() {            
                 _that.isCheckedAll(); 
@@ -52,18 +52,18 @@
 
             });
         },
-        //判断全选是否选择
+        //判断全選是否選擇
         isCheckedAll(){             
-            var chknum = $(".cart_list :checkbox").size();//checkbox总个数
-            var chk = 0;  //checkbox checked=true总个数
+            var chknum = $(".cart_list :checkbox").size();//checkbox總個數
+            var chk = 0;  //checkbox checked=true總個數
             $(".cart_list :checkbox").each(function () {  
                 if($(this).prop("checked")==true){
                     chk++;
                 }
             });
-            if(chknum==chk){//全选
+            if(chknum==chk){//全選
                 $("#checkAll").prop("checked",true);
-            }else{//不全选
+            }else{//不全選
                 $("#checkAll").prop("checked",false);
             }
         }, 

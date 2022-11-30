@@ -27,10 +27,10 @@ var app={
 	resizeIframe:function(){		
 		$("#rightMain").height($(window).height()-80)
 	},
-	// 删除提示
+	// 刪除提示
 	confirmDelete:function(){
 		$(".delete").click(function(){
-			var flag=confirm("您确定要删除吗?")
+			var flag=confirm("您確定要刪除吗?")
 			return flag
 		})
 	},		
@@ -56,29 +56,29 @@ var app={
 	},
 	changeNum:function(){
 		/*
-		1、获取el里面的值  var spanNum=$(this).html()
+		1. 獲取el里面的值  var spanNum=$(this).html()
 
 
-		2、创建一个input的dom节点   var input=$("<input value='' />");
+		2. 創建一個input的dom節點   var input=$("<input value='' />");
 
 
-		3、把input放在el里面   $(this).html(input);
+		3. 把input放在el里面   $(this).html(input);
 
 
-		4、让input获取焦点  给input赋值    $(input).trigger('banner').val(val);
+		4. 让input獲取焦点  给input赋值    $(input).trigger('banner').val(val);
 
-		5、点击input的时候阻止冒泡 
+		5. 點擊input的時候阻止冒泡 
 
 					$(input).click(function(e){
 						e.stopPropagation();				
 					})
 
-		6、鼠标离开的时候给span赋值,并触发ajax请求
+		6. 鼠标离開的時候给span赋值,并触發ajax請求
 
 			$(input).blur(function(){
 				var inputNum=$(this).val();
 				spanEl.html(inputNum);
-				触发ajax请求
+				触發ajax請求
 				
 			})
 		*/
@@ -88,18 +88,18 @@ var app={
 			var table=$(this).attr("data-table");
 			var field=$(this).attr("data-field");
 			var spanNum=$(this).attr("data-num");
-			var spanEl=$(this)  //保存span这个dom节点
+			var spanEl=$(this)  //保存span这個dom節點
 
 			var input=$("<input value='' style='width:60px' />");
 			$(this).html(input);
-			$(input).trigger('banner').val(spanNum);   //让输入框获取焦点并设置值
+			$(input).trigger('banner').val(spanNum);   //让輸入框獲取焦点并設置值
 			$(input).click(function(e){
 				e.stopPropagation();				
 			})
 			$(input).blur(function(e){
 				var inputNum=$(this).val();
 				spanEl.html(inputNum);
-				//异步请求修改数量
+				//异步請求修改數量
 				$.get("/"+config.adminPath+"/main/editnum",{id:id,table:table,field:field,num:inputNum},function(response){				
 					if(!response.success){
 						console.log(response)

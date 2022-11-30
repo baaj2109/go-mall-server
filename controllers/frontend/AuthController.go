@@ -106,7 +106,7 @@ func (c *AuthController) SendCode() {
 	if len(user) > 0 {
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
-			"msg":     "用户已存在",
+			"msg":     "用戶已存在",
 		}
 		c.ServeJSON()
 		return

@@ -100,7 +100,7 @@
       'Advanced Edit': '高級編輯',
       // Video
       'Insert Video': '插入影片',
-      'Embedded Code': '嵌入式代码',
+      'Embedded Code': '嵌入式代碼',
       'Paste in a video URL': '粘貼在視頻網址',
       'Drop video': '放下視頻',
       'Your browser does not support HTML5 video.': '您的瀏覽器不支持html5視頻。',
@@ -161,7 +161,7 @@
       'Confused face': "\u9762\u5C0D\u56F0\u60D1",
       'Confounded face': "\u8A72\u6B7B\u7684\u81C9",
       'Kissing face': '接吻的脸',
-      'Face throwing a kiss': '扔一个吻',
+      'Face throwing a kiss': '扔一個吻',
       'Kissing face with smiling eyes': '带着微笑的眼睛接吻的脸',
       'Kissing face with closed eyes': '閉眼接吻',
       'Face with stuck out tongue': '舌头伸出来的脸',
@@ -212,7 +212,7 @@
       // Select all
       'Select All': '全選',
       // Code view
-      'Code View': '代码视图',
+      'Code View': '代碼视圖',
       // Quote
       'Quote': '引用',
       'Increase': "\u7E2E\u6392",
@@ -243,8 +243,8 @@
       'Cut': '切',
       'Paste': '貼上',
       'Basic Formatting': '基本格式',
-      'Increase quote level': '增加报价水平',
-      'Decrease quote level': '降低报价水平',
+      'Increase quote level': '增加报價水平',
+      'Decrease quote level': '降低报價水平',
       'Image / Video': '圖像/影片',
       'Resize larger': '調整大小更大',
       'Resize smaller': '調整大小更小',

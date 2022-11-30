@@ -7,9 +7,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主鍵',
-  `uid` int(10) DEFAULT '0' COMMENT '用户編號',
-  `phone` varchar(30) DEFAULT '' COMMENT '用户手機',
-  `name` varchar(30) DEFAULT '' COMMENT '用户名字',
+  `uid` int(10) DEFAULT '0' COMMENT '用戶編號',
+  `phone` varchar(30) DEFAULT '' COMMENT '用戶手機',
+  `name` varchar(30) DEFAULT '' COMMENT '用戶名字',
   `zipcode` varchar(20) DEFAULT '' COMMENT '郵政區好',
   `address` varchar(250) DEFAULT '' COMMENT '地址',
   `default_address` int(11) DEFAULT '0' COMMENT '默認地址',
@@ -21,8 +21,8 @@ CREATE TABLE `address` (
 -- Records of address
 -- ----------------------------
 BEGIN;
-INSERT INTO `address` VALUES (1, 1, '13888888888', '张三', '600000', '成都市xxxx区xxxx街道xxxx号', 0, 0);
-INSERT INTO `address` VALUES (2, 1, '13888888889', '王五', '100000', '北京xxxxx区xxxxx街道xxxx号', 1, 0);
+INSERT INTO `address` VALUES (1, 1, '13888888888', '张三', '600000', '成都市xxxx区xxxx街道xxxx號', 0, 0);
+INSERT INTO `address` VALUES (2, 1, '13888888889', '王五', '100000', '北京xxxxx区xxxxx街道xxxx號', 1, 0);
 COMMIT;
 
 -- ----------------------------
@@ -31,7 +31,7 @@ COMMIT;
 DROP TABLE IF EXISTS `administrator`;
 CREATE TABLE `administrator` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) DEFAULT '' COMMENT '用户名',
+  `username` varchar(100) DEFAULT '' COMMENT '用戶名',
   `password` varchar(100) DEFAULT '' COMMENT '密碼',
   `mobile` varchar(100) DEFAULT NULL COMMENT '手機',
   `email` varchar(50) DEFAULT '' COMMENT '郵箱',
@@ -166,7 +166,7 @@ CREATE TABLE `menu` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `menu` VALUES (1, 'PC电脑', '/category_1.html', 1, 1, '1', 10, 1, 0);
-INSERT INTO `menu` VALUES (2, '手机', '', 1, 2, '1', 10, 1, 1603518198);
+INSERT INTO `menu` VALUES (2, '手機', '', 1, 2, '1', 10, 1, 1603518198);
 COMMIT;
 
 -- ----------------------------
@@ -176,7 +176,7 @@ DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '編號',
   `order_id` varchar(100) DEFAULT '' COMMENT '訂單編號',
-  `uid` int(11) DEFAULT '0' COMMENT '用户編號',
+  `uid` int(11) DEFAULT '0' COMMENT '用戶編號',
   `all_price` decimal(10,2) DEFAULT '0.00' COMMENT '價格',
   `phone` varchar(30) DEFAULT '' COMMENT '電話',
   `name` varchar(100) DEFAULT '' COMMENT '名字',
@@ -194,10 +194,10 @@ CREATE TABLE `order` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `order` VALUES (1, '2020102316351850', 1, 66.66, '18899999999', '张三', '成都市高新区', '600000', 0, 0, 0, 1603442151);
-INSERT INTO `order` VALUES (2, '2020112016527196', 1, 6666.66, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx号', '100000', 0, 0, 0, 1605862363);
-INSERT INTO `order` VALUES (3, '2021011810071850', 1, 1999.00, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx号', '100000', 0, 0, 0, 1610935652);
-INSERT INTO `order` VALUES (4, '2021011810151576', 1, 1999.00, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx号', '100000', 0, 0, 0, 1610936113);
-INSERT INTO `order` VALUES (5, '2021011811371850', 1, 10995.00, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx号', '100000', 0, 0, 0, 1610941064);
+INSERT INTO `order` VALUES (2, '2020112016527196', 1, 6666.66, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx號', '100000', 0, 0, 0, 1605862363);
+INSERT INTO `order` VALUES (3, '2021011810071850', 1, 1999.00, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx號', '100000', 0, 0, 0, 1610935652);
+INSERT INTO `order` VALUES (4, '2021011810151576', 1, 1999.00, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx號', '100000', 0, 0, 0, 1610936113);
+INSERT INTO `order` VALUES (5, '2021011811371850', 1, 10995.00, '13888888889', '王五', '北京xxxxx区xxxxx街道xxxx號', '100000', 0, 0, 0, 1610941064);
 COMMIT;
 
 -- ----------------------------
@@ -207,12 +207,12 @@ DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE `order_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '訂單編號',
   `order_id` int(11) DEFAULT '0' COMMENT '訂單編號',
-  `uid` int(11) DEFAULT '0' COMMENT '用户編號',
+  `uid` int(11) DEFAULT '0' COMMENT '用戶編號',
   `product_title` varchar(100) DEFAULT '' COMMENT '商品標題',
   `product_id` int(11) DEFAULT '0' COMMENT '商品編號',
   `product_img` varchar(200) DEFAULT '' COMMENT '商品圖片',
   `product_price` decimal(10,2) DEFAULT '0.00' COMMENT '商品價格',
-  `product_num` int(10) DEFAULT '0' COMMENT '商品数量',
+  `product_num` int(10) DEFAULT '0' COMMENT '商品數量',
   `goods_version` varchar(100) DEFAULT '' COMMENT '商品版本',
   `goods_color` varchar(100) DEFAULT '' COMMENT '商品顏色',
   `add_time` int(10) DEFAULT '0' COMMENT '加入時間',
@@ -250,7 +250,7 @@ CREATE TABLE `product` (
   `product_keywords` varchar(100) DEFAULT '' COMMENT '關鍵词',
   `product_desc` varchar(50) DEFAULT '' COMMENT '描述',
   `product_content` varchar(100) DEFAULT '' COMMENT '内容',
-  `is_delete` tinyint(4) DEFAULT '0' COMMENT '是否删除',
+  `is_delete` tinyint(4) DEFAULT '0' COMMENT '是否刪除',
   `is_hot` tinyint(4) DEFAULT '0' COMMENT '是否熱門',
   `is_best` tinyint(4) DEFAULT '0' COMMENT '是否暢銷',
   `is_new` tinyint(4) DEFAULT '0' COMMENT '是否新品',
@@ -267,7 +267,7 @@ CREATE TABLE `product` (
 BEGIN;
 INSERT INTO `product` VALUES (1, '电脑', '', '', 1, 100, 0, 1999.00, 2599.00, '', '', '第一版', 'static/upload/20201203/1607005318313835000.jpg', '', '', '1', '', '', '', 0, 1, 1, 0, 0, 0, 1, 1603440139);
 INSERT INTO `product` VALUES (2, '笔记本', '', '', 1, 1, 5, 3999.00, 4699.00, '23,24,39', ' 格式: 顏色:红色,白色,黄色 | 尺寸:41,42,43', '', 'static/upload/20210118/1610940762322803000.jpg', '', '', '1', '', '', '', 0, 1, 1, 1, 1, 0, 1, 0);
-INSERT INTO `product` VALUES (3, '手机', '', '', 1, 100, 6, 999.00, 1299.00, '', '', '', 'static/upload/20210118/1610940776037983000.jpg', '', '', '1', '', '', '', 0, 1, 1, 1, 0, 1, 1, 1607005027);
+INSERT INTO `product` VALUES (3, '手機', '', '', 1, 100, 6, 999.00, 1299.00, '', '', '', 'static/upload/20210118/1610940776037983000.jpg', '', '', '1', '', '', '', 0, 1, 1, 1, 0, 1, 1, 1607005027);
 COMMIT;
 
 -- ----------------------------
@@ -319,7 +319,7 @@ CREATE TABLE `product_cate` (
 -- Records of product_cate
 -- ----------------------------
 BEGIN;
-INSERT INTO `product_cate` VALUES (1, '手机', '', '', '', 0, '手机', '手机', '手机', 0, 1, 0);
+INSERT INTO `product_cate` VALUES (1, '手機', '', '', '', 0, '手機', '手機', '手機', 0, 1, 0);
 INSERT INTO `product_cate` VALUES (2, 'PC电脑', '', '', '', 0, 'PC电脑', '', '', 0, 1, 0);
 COMMIT;
 
@@ -464,7 +464,7 @@ CREATE TABLE `setting` (
   `no_picture` varchar(100) DEFAULT '' COMMENT '没有圖片顯示',
   `site_icp` varchar(50) DEFAULT '' COMMENT '商城ICP',
   `site_tel` varchar(50) DEFAULT '' COMMENT '商城手機',
-  `search_keywords` varchar(250) DEFAULT '' COMMENT '搜索關鍵字',
+  `search_keywords` varchar(250) DEFAULT '' COMMENT '搜尋關鍵字',
   `tongji_code` varchar(500) DEFAULT '' COMMENT '統計編碼',
   `appid` varchar(50) DEFAULT '' COMMENT 'oss appid',
   `app_secret` varchar(80) DEFAULT '' COMMENT 'oss app_secret',

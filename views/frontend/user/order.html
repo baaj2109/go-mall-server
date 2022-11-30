@@ -28,7 +28,7 @@
                               action="/user/order" method="get">
                             <input class="search-text" type="search" id="J_orderSearchKeywords"
                                    name="keywords"
-                                   autocomplete="off" placeholder="输入商品名稱">
+                                   autocomplete="off" placeholder="輸入商品名稱">
                             <input type="submit" class="search-btn iconfont" value="搜尋">
                         </form>
                     </div>
@@ -59,7 +59,7 @@
                                     </h2>
                                 {{$value.AddTime | timestampToDate}} | {{$value.Name}} |
                                     訂單號:{{$value.OrderId}} | 線上支付
-                                    支付金額：{{$value.AllPrice}} 元
+                                    支付金額:{{$value.AllPrice}} 元
                                 </div>
                             {{range $k,$v := $value.OrderItem}}
                                 <div class="order-info clearfix">
@@ -69,7 +69,7 @@
                                     <div class="col_title">
                                         <p>{{$v.ProductTitle}}</p>
                                         <p>{{$v.ProductPrice}}元 x {{$v.ProductNum}}</p>
-                                        <p>合计：{{mul $v.ProductPrice $v.ProductNum}}元</p>
+                                        <p>合计:{{mul $v.ProductPrice $v.ProductNum}}元</p>
                                     </div>
                                 </div>
                             {{end}}

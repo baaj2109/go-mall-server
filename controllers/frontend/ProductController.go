@@ -174,7 +174,7 @@ func (c *ProductController) GetImgList() {
 
 	if err1 != nil || err2 != nil || err3 != nil {
 		c.Data["json"] = map[string]interface{}{
-			"result":  "失败",
+			"result":  "失敗",
 			"success": false,
 		}
 		c.ServeJSON()
