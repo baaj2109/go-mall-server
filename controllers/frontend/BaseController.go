@@ -70,7 +70,7 @@ func (c *BaseController) BaseInit() {
 	/// 判斷使用者是否登入
 	user := models.User{}
 	models.Cookie.Get(c.Ctx, "userinfo", &user)
-	if len(user.Phone) == 4 {
+	if len(user.Email) > 0 {
 		str := fmt.Sprintf(`<ul>
 			<li class="userinfo">
 				<a href="#">%v</a>
@@ -81,14 +81,21 @@ func (c *BaseController) BaseInit() {
 					<li><a href="/auth/loginOut">退出</a></li>
 				</ol>
 			</li>
-		</ul> `, user.Phone)
+		</ul> `, user.Email)
 		c.Data["userinfo"] = str
 	} else {
-		str := fmt.Sprint(`<ul>
+		// str := fmt.Sprintf(`<ul>
+		// 	<li><a href="/auth/login" target="_self">登入</a></li>
+		// 	<li>|</li>
+		// 	<li><a href="/auth/registerStep1" target="_self" >註冊</a></li>
+		// 	</ul>`)
+		str := `<ul>
 			<li><a href="/auth/login" target="_self">登入</a></li>
 			<li>|</li>
 			<li><a href="/auth/registerStep1" target="_self" >註冊</a></li>
-			</ul>`)
+			<li>|</li>
+			<li><a href="/oauth/GoogleLogin" target="_self">Login with Google</a></li>
+			</ul>`
 		c.Data["userinfo"] = str
 	}
 

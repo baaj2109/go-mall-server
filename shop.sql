@@ -487,11 +487,10 @@ COMMIT;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `phone` varchar(30) DEFAULT '' COMMENT '手機',
+  `email` varchar(80) DEFAULT '' COMMENT '信箱',
   `password` varchar(80) DEFAULT '' COMMENT '密碼',
   `add_time` int(10) DEFAULT '0' COMMENT '加入時間',
   `last_ip` varchar(50) DEFAULT '' COMMENT '最近ip',
-  `email` varchar(80) DEFAULT '' COMMENT '郵遞區號',
   `status` tinyint(4) DEFAULT '0' COMMENT '狀態',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -500,8 +499,8 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES (1, '13888888888', 'e10adc3949ba59abbe56e057f20f883e', 0, '', 'admin@qq.com', 1);
-INSERT INTO `user` VALUES (2, '18389999993', 'e10adc3949ba59abbe56e057f20f883e', 0, '127.0.0.1', '', 0);
+INSERT INTO `user` VALUES (1, 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '', 1);
+INSERT INTO `user` VALUES (2, "test@test.com", 'e10adc3949ba59abbe56e057f20f883e', 0, '127.0.0.1', 0);
 COMMIT;
 
 -- ----------------------------
@@ -511,9 +510,9 @@ DROP TABLE IF EXISTS `user_sms`;
 CREATE TABLE `user_sms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(50) DEFAULT '' COMMENT 'ip地址',
-  `phone` varchar(50) DEFAULT '' COMMENT '手機',
-  `send_count` int(10) DEFAULT '0' COMMENT '發縙統計',
-  `add_day` varchar(200) DEFAULT '' COMMENT '添加日期',
+  `email` varchar(50) DEFAULT '' COMMENT '信箱',
+  `send_count` int(10) DEFAULT '0' COMMENT '寄發統計',
+  `add_day` varchar(200) DEFAULT '' COMMENT '新增日期',
   `add_time` int(10) DEFAULT '0' COMMENT '加入時間',
   `sign` varchar(80) DEFAULT '' COMMENT '簽名',
   PRIMARY KEY (`id`)
@@ -523,9 +522,9 @@ CREATE TABLE `user_sms` (
 -- Records of user_sms
 -- ----------------------------
 BEGIN;
-INSERT INTO `user_sms` VALUES (1, '127.0.0.1', '18389999993', 1, '20201102', 1604288606, 'e178c966721a75236355d935ac3dd9ff');
-INSERT INTO `user_sms` VALUES (2, '127.0.0.1', '18389999991', 1, '20201119', 1605759728, '200f0a43fbc9c0ae40f26432269cae91');
-INSERT INTO `user_sms` VALUES (3, '127.0.0.1', '18389999992', 1, '20201119', 1605759900, '5abc5dca4b31c1cfe222693ee1c5bd1c');
+INSERT INTO `user_sms` VALUES (1, '127.0.0.1', 'test@test.com', 1, '20201102', 1604288606, 'e178c966721a75236355d935ac3dd9ff');
+INSERT INTO `user_sms` VALUES (2, '127.0.0.1', 'test1@test.com', 1, '20201119', 1605759728, '200f0a43fbc9c0ae40f26432269cae91');
+INSERT INTO `user_sms` VALUES (3, '127.0.0.1', 'test3@test.com', 1, '20201119', 1605759900, '5abc5dca4b31c1cfe222693ee1c5bd1c');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

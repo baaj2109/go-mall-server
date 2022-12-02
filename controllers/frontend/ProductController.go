@@ -76,7 +76,7 @@ func (c *ProductController) Collect() {
 	}
 	user := models.User{}
 	ok := models.Cookie.Get(c.Ctx, "userinfo", &user)
-	if ok != true {
+	if !ok {
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"msg":     "請先登入",

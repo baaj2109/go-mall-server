@@ -1,9 +1,19 @@
 package models
 
+// type UserSms struct {
+// 	Id        int
+// 	Ip        string
+// 	Phone     string
+// 	SendCount int
+// 	AddDay    string
+// 	AddTime   int
+// 	Sign      string
+// }
+
 type UserSms struct {
 	Id        int
 	Ip        string
-	Phone     string
+	Email     string
 	SendCount int
 	AddDay    string
 	AddTime   int

@@ -68,7 +68,7 @@
       'Increase Indent': '增加缩进量',
       // Links
       'Insert Link': '插入超連結',
-      'Open in new tab': '在新标签頁中打開',
+      'Open in new tab': '在新标簽頁中打開',
       'Open Link': '打開超連結',
       'Edit Link': '編輯超連結',
       'Unlink': '刪除超連結',
@@ -83,7 +83,7 @@
       'Manage Images': '管理圖片',
       'Loading': '加载中',
       'Deleting': '刪除中',
-      'Tags': '标签',
+      'Tags': '标簽',
       'Are you sure? Image will be deleted.': '圖片将会被刪除，是否確认？',
       'Replace': '替换',
       'Uploading': '上傳中',

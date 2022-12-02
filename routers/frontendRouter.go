@@ -10,6 +10,10 @@ func init() {
 
 	beego.Router("/", &frontend.IndexController{})
 
+	/// google oauth
+	beego.Router("/oauth/GoogleLogin", &frontend.GoogleOauthController{}, "get:HandleGoogleLogin")
+	beego.Router("/oauth/GoogleCallBack", &frontend.GoogleOauthController{}, "get:HandleGoogleCallback")
+
 	/// auth
 	beego.Router("/auth/registerStep1", &frontend.AuthController{}, "get:RegisterStep1")
 	beego.Router("/auth/registerStep2", &frontend.AuthController{}, "get:RegisterStep2")

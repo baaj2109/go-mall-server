@@ -17,12 +17,12 @@
             <h2>註冊LeastMall帳戶戶</h2>
         </div>
         <div class="regist_main center">
-            <p>驗證碼已通過簡訊發送至{{.phone}}</p>
+            <p>驗證碼已通過簡訊發送至{{.email}}</p>
             <br>
             <br>
             <div class="error"></div>
             <input type="hidden" id="phone" name="phone" value="{{.phone}}"/>
-            <input type="hidden" id="phone_code" name="phone_code" value="{{.phone_code}}"/>
+            <input type="hidden" id="chart_code" name="chart_code" value="{{.chart_code}}"/>
             <input type="hidden" id="sign" name="sign" value="{{.sign}}"/>
             <div class="yzm">
                 <input type="text" id="sms_code" name="sms_code" placeholder="請輸入驗證碼"/>
@@ -60,12 +60,12 @@
                     timer = 10
                     Countdown();
                     var phone = $("#phone").val()
-                    var phone_code = $("#phone_code").val()
+                    var chart_code = $("#chart_code").val()
                     var phoneCodeId = "resend"
                     // alert('重新發送');
                     $.get('/auth/sendCode', {
                         phone: phone,
-                        phone_code: phone_code,
+                        chart_code: chart_code,
                         phoneCodeId: phoneCodeId
                     }, function (response) {
                         console.log(response)

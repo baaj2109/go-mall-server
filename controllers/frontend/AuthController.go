@@ -4,7 +4,6 @@ import (
 	"LeastMall/common"
 	"LeastMall/models"
 	"fmt"
-	"regexp"
 	"strings"
 )
 
@@ -20,9 +19,9 @@ func (c *AuthController) RegisterStep1() {
 // register second step
 func (c *AuthController) RegisterStep2() {
 	sign := c.GetSession("sign")
-	phoneCode := c.GetString("phone_code")
+	phoneCode := c.GetString("chart_code")
 	/// 圖形驗證碼是否正確
-	sessionPhoteCode := c.GetSession("phone_code")
+	sessionPhoteCode := c.GetSession("chart_code")
 	if phoneCode != sessionPhoteCode {
 		c.Redirect("/auth/registerStep1", 302)
 		return
@@ -31,8 +30,8 @@ func (c *AuthController) RegisterStep2() {
 	models.DB.Where("sign=?", sign).Find(&userTemp)
 	if len(userTemp) > 0 {
 		c.Data["sign"] = sign
-		c.Data["phone_code"] = phoneCode
-		c.Data["phone"] = userTemp[0].Phone
+		c.Data["chart_code"] = phoneCode
+		c.Data["Email"] = userTemp[0].Email
 		c.TplName = "frontend/auth/register_step2.html"
 	} else {
 		c.Redirect("/auth/registerStep1", 302)
@@ -63,14 +62,15 @@ func (c *AuthController) RegisterStep3() {
 
 // / send certification text
 func (c *AuthController) SendCode() {
-	phone := c.GetString("phone")
-	// phoneCode := c.GetString("phone_code")
-	phoneCode := strings.Trim(c.GetString("phone_code"), "")
+	// phone := c.GetString("phone")
+	email := c.GetString("email")
+	// phoneCode := c.GetString("chart_code")
+	phoneCode := strings.Trim(c.GetString("chart_code"), "")
 	phoneCodeId := c.GetString("phoneCodeId")
 
 	if phoneCodeId == "resend" {
 		/// 驗證session裡面驗證碼是否合法
-		sessionPhotoCode := c.GetSession("phone_code")
+		sessionPhotoCode := c.GetSession("chart_code")
 		if sessionPhotoCode != phoneCode {
 			c.Data["json"] = map[string]interface{}{
 				"success": false,
@@ -89,20 +89,21 @@ func (c *AuthController) SendCode() {
 		return
 	}
 
-	c.SetSession("phone_code", phoneCode)
-	pattern := `^[\d]{4}$`
-	reg := regexp.MustCompile(pattern)
-	if !reg.MatchString(phone) {
+	c.SetSession("chart_code", phoneCode)
+	// pattern := `^[\d]{4}$`
+	// reg := regexp.MustCompile(pattern)
+	// if !reg.MatchString(email) {
+	if !common.VerifyEmail(email) {
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
-			"msg":     "手機格式不正確",
+			"msg":     "信箱格式不正確",
 		}
 		c.ServeJSON()
 		return
 	}
 	user := []models.User{}
-	models.DB.Where("phone=?", phone).Find(&user)
-	fmt.Print("user size: %d", len(user))
+	models.DB.Where("email=?", email).Find(&user)
+	fmt.Printf("user size: %d", len(user))
 	if len(user) > 0 {
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
@@ -114,13 +115,13 @@ func (c *AuthController) SendCode() {
 
 	add_day := common.FormatDay()
 	ip := strings.Split(c.Ctx.Request.RemoteAddr, ":")[0]
-	sign := common.Md5(phone + add_day) //签名
+	sign := common.Md5(email + add_day) //簽名
 	smsCode := common.GetRandomNum()
 	userTemp := []models.UserSms{}
-	models.DB.Where("add_day=? AND phone=?", add_day, phone).Find(&userTemp)
+	models.DB.Where("add_day=? AND email=?", add_day, email).Find(&userTemp)
 	var sendCount int
 	models.DB.Where("add_day=? AND ip=?", add_day, ip).Table("user_temp").Count(&sendCount)
-	/// 驗證此ＩＰ金天發送次數
+	/// 驗證此ＩＰ今天發送次數
 	if sendCount <= 10 {
 		if len(userTemp) > 0 {
 			/// 驗證此手機號碼今天發送次數
@@ -156,7 +157,7 @@ func (c *AuthController) SendCode() {
 			/// 發送驗證碼 並給 userTemp 寫入數據
 			oneUserSms := models.UserSms{
 				Ip:        ip,
-				Phone:     phone,
+				Email:     email,
 				SendCount: 1,
 				AddDay:    add_day,
 				AddTime:   int(common.GetUnix()),
@@ -246,10 +247,11 @@ func (c *AuthController) GoRegister() {
 	models.DB.Where("sign=?", sign).Find(&userTemp)
 	ip := strings.Split(c.Ctx.Request.RemoteAddr, ":")[0]
 	if len(userTemp) > 0 {
+
 		user := models.User{
-			Phone:    userTemp[0].Phone,
+			Email:    userTemp[0].Email,
 			Password: common.Md5(password),
-			LastIp:   ip,
+			LastIP:   ip,
 		}
 		models.DB.Create(&user)
 
@@ -263,11 +265,11 @@ func (c *AuthController) GoRegister() {
 
 // 登入帳號
 func (c *AuthController) GoLogin() {
-	phone := c.GetString("phone")
+	email := c.GetString("email")
 	password := c.GetString("password")
-	phone_code := c.GetString("phone_code")
+	chart_code := c.GetString("chart_code")
 	phoneCodeId := c.GetString("phoneCodeId")
-	identifyFlag := models.Cpt.Verify(phoneCodeId, phone_code)
+	identifyFlag := models.Cpt.Verify(phoneCodeId, chart_code)
 	if !identifyFlag {
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
@@ -278,7 +280,7 @@ func (c *AuthController) GoLogin() {
 	}
 	password = common.Md5(password)
 	user := []models.User{}
-	models.DB.Where("phone=? AND password=?", phone, password).Find(&user)
+	models.DB.Where("email=? AND password=?", email, password).Find(&user)
 	if len(user) > 0 {
 		models.Cookie.Set(c.Ctx, "userinfo", user[0])
 		c.Data["json"] = map[string]interface{}{

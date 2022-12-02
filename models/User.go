@@ -1,12 +1,21 @@
 package models
 
+// type User struct {
+// 	Id       int
+// 	Phone    string
+// 	Password string
+// 	AddTime  int
+// 	LastIp   string
+// 	Email    string
+// 	Status   int
+// }
+
 type User struct {
 	Id       int
-	Phone    string
+	Email    string
 	Password string
 	AddTime  int
-	LastIp   string
-	Email    string
+	LastIP   string
 	Status   int
 }
 
