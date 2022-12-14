@@ -79,5 +79,13 @@ func (c *GoogleOauthController) HandleGoogleCallback() {
 	models.DB.Create(&user)
 
 	models.Cookie.Set(c.Ctx, "userinfo", user)
+	// c.Data["json"] = map[string]interface{}{
+	// 	"success": true,
+	// 	"msg":     "Oauth2 success from google",
+	// }
+	// c.TplName = "frontend/auth/login.html"
+
+	// c.ServeJSON()
 	c.Redirect("/", 302)
+
 }

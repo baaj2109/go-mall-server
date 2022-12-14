@@ -121,7 +121,12 @@
                 var address=$('#edit_address').val();
                 var zipcode=$('#edit_zipcode').val();
 
-                $.post('/address/goEditAddressList',{address_id:id,name:name,phone:phone,address:address,zipcode:zipcode},function(response){
+                $.post('/address/goEditAddressList', {
+                    address_id: id,
+                    name: name,
+                    phone: phone,
+                    address: address,
+                    zipcode: zipcode }, function(response) {
                     
                     if(response.success){
 

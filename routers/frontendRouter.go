@@ -12,6 +12,8 @@ func init() {
 
 	/// google oauth
 	beego.Router("/oauth/GoogleLogin", &frontend.GoogleOauthController{}, "get:HandleGoogleLogin")
+	beego.Router("/oauth/GoogleCallBack", &frontend.GoogleOauthController{}, "post:HandleGoogleCallback")
+	// beego.Router("/oauth/GoogleCallBack", &frontend.GoogleOauthController{})
 	beego.Router("/oauth/GoogleCallBack", &frontend.GoogleOauthController{}, "get:HandleGoogleCallback")
 
 	/// auth

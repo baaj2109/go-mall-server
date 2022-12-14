@@ -1,2 +1,5 @@
 client_*.json
 test_send.txt
+vendor
+.vscode
+.DS_Store

@@ -46,7 +46,11 @@
             <input class="submit" type="button" id="goLogin" value="立即登入">
         </div>
         <div>
-            <input type = "button" herf = "/oauth/GoogleLogin" target = "popup" value = "login with google">
+            <!-- <input class="submit" type="button" id="openwindow" value="login with google popup"> -->
+            
+            <a href="/oauth/GoogleLogin" target="_self" wid>
+                <input type="button" class="submit" value="login with google self" />
+            </a>
         </div>
     </div>
 </div>
@@ -57,6 +61,44 @@
 </footer>
 <script>
     $(function () {
+        // $('#openwindow').click(function() {
+        //     var uri = '/oauth/GoogleLogin'
+        //     var left = (screen.width/2 - 400)
+        //     var top = (screen.height/2 - 350)
+        //     let popup = window.open(uri, 'oauth window','resizable=yes, width=800, height=700, top='+top+', left='+left)
+        //     // location.herf = "/oauth/GoogleLogin/*"
+        //     // $.ajax({
+        //     //     type:"POST",
+        //     //     url: "/oauth/GoogleCallBack/*",
+        //     // }).done(function(m) {
+        //     //     if (m.success == true) {
+        //     //         popup.close()
+        //     //         location.herf = "/"
+        //     //     }
+        //     // });
+
+        //     $.get("/oauth/GoogleCallBack",  function(response) {
+        //         console.log(response);
+        //         window.alert("get");
+        //         if (response.success == true) {
+        //             popup.close()
+        //             location.href = "/"             
+        //         }                
+        //     })
+        //     $.post('/oauth/GoogleCallBack',  function(response) {
+        //         console.log(response);
+        //         window.alert("post");
+        //         location.href = "/" 
+        //         if (response.success == true) {
+        //             popup.close()
+        //             location.href = "/" 
+        //             location.reload()
+        //         }                
+        //     })
+        //     // popup.close()
+
+        // });
+
         $("#goLogin").click(function (e) {
             var email = $('#email').val();
             var password = $('#password').val();
@@ -83,7 +125,7 @@
                 chart_code: chart_code,
                 phoneCodeId: phoneCodeId
             }, function (response) {
-                console.log(response);
+                console.log(response);                
                 if (response.success == true) {
                     if (prevPage) {
                         location.href = prevPage;
@@ -93,7 +135,6 @@
                 } else {
                     /// 改變驗證碼
                     $(".error").html("Error:" + response.msg + ",請重新輸入!")
-                    
                     /// 改變驗證碼
                     var captchaImgSrc = $(".captcha-img").attr("src")
                     $(".chart_code").val("")
